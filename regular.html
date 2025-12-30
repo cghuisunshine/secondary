@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BC 普通高中毕业证（Regular Dogwood）+ 三条升学路径课程对照表</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e9ecff;
+      --muted:#aab3e6;
+      --line:rgba(255,255,255,.12);
+      --ok:#3ddc97;
+      --maybe:#ffd166;
+      --no:#ff6b6b;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:radial-gradient(1200px 600px at 15% 0%, rgba(122,162,255,.20), transparent 60%),
+                 radial-gradient(900px 500px at 85% 10%, rgba(61,220,151,.16), transparent 55%),
+                 var(--bg);
+      line-height:1.55;
+    }
+    header{
+      padding:28px 16px 8px;
+      max-width:1150px;
+      margin:0 auto;
+    }
+    .title{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      align-items:baseline;
+      justify-content:space-between;
+    }
+    h1{
+      margin:0;
+      font-size:clamp(20px, 2.4vw, 30px);
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .wrap{
+      max-width:1150px;
+      margin:0 auto;
+      padding:12px 16px 34px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .card-head{
+      padding:14px 16px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px 14px;
+      justify-content:space-between;
+      align-items:center;
+      border-bottom:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+    }
+    .legend{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      font-size:13px;
+      color:var(--muted);
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--line);
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.12);
+      user-select:none;
+    }
+    .dot{width:10px;height:10px;border-radius:50%}
+    .dot.ok{background:var(--ok)}
+    .dot.maybe{background:var(--maybe)}
+    .dot.no{background:var(--no)}
+    .table-wrap{
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      min-width:980px;
+    }
+    thead th{
+      position:sticky;
+      top:0;
+      z-index:1;
+      background:rgba(18,26,51,.92);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--line);
+      font-size:13px;
+      color:var(--muted);
+      padding:12px 12px;
+      text-align:left;
+      white-space:nowrap;
+    }
+    tbody td{
+      padding:12px 12px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size:14px;
+    }
+    tbody tr:nth-child(2n) td{
+      background:rgba(255,255,255,.02);
+    }
+    .req{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-weight:600;
+      white-space:nowrap;
+    }
+    .badge{
+      font-family:var(--mono);
+      font-size:12px;
+      padding:2px 8px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.14);
+      display:inline-block;
+    }
+    .b-ok{border-color:rgba(61,220,151,.45); color:var(--ok)}
+    .b-maybe{border-color:rgba(255,209,102,.45); color:var(--maybe)}
+    .b-no{border-color:rgba(255,107,107,.45); color:var(--no)}
+    .note{
+      padding:14px 16px;
+      color:var(--muted);
+      font-size:14px;
+      background:rgba(0,0,0,.10);
+    }
+    .note strong{color:var(--text)}
+    .tips{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+    @media (min-width: 900px){
+      .tips{grid-template-columns:repeat(3,1fr)}
+    }
+    .tip{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:14px 14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+    }
+    .tip h3{
+      margin:0 0 6px;
+      font-size:14px;
+      color:var(--text);
+    }
+    .tip p{
+      margin:0;
+      font-size:13px;
+      color:var(--muted);
+    }
+    footer{
+      max-width:1150px;
+      margin:0 auto;
+      padding:10px 16px 26px;
+      color:rgba(233,236,255,.55);
+      font-size:12px;
+    }
+    .small{font-size:12px;color:rgba(233,236,255,.60)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="title">
+      <h1>BC 普通高中毕业证（Regular Dogwood）+ 三条升学路径课程对照表</h1>
+      <div class="small">适用：走 Regular Dogwood（80 学分/省考/必修课齐全）+ 未来上大学</div>
+    </div>
+    <p class="sub">
+      说明：第二列是 <strong>Regular Dogwood（普通毕业证）</strong> 的“毕业底线”。后面三列是常见
+      <strong>大学/College 入学</strong>在此基础上的“额外或更推荐”课程（不同学校/专业会有差异）。
+    </p>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <div class="card-head">
+        <div>
+          <strong>一张总表（Regular Dogwood 版）</strong>
+          <div class="small">✅ 必须｜⭕ 建议/视情况｜❌ 不需要（指升学额外不要求）</div>
+        </div>
+        <div class="legend" aria-label="legend">
+          <span class="pill"><span class="dot ok"></span>必须</span>
+          <span class="pill"><span class="dot maybe"></span>建议/视情况</span>
+          <span class="pill"><span class="dot no"></span>升学额外不要求</span>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:260px;">课程/要求</th>
+              <th style="min-width:260px;">高中毕业证必需<br>(Regular Dogwood 底线)</th>
+              <th style="min-width:180px;">文 / 商路径<br>(上大学)</th>
+              <th style="min-width:200px;">理工 / 医护路径<br>(上大学)</th>
+              <th style="min-width:200px;">教育 / 社科路径<br>(上大学)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Language Arts -->
+            <tr>
+              <td class="req">Language Arts 10（LA 10）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+            </tr>
+            <tr>
+              <td class="req">Language Arts 11（LA 11）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+            </tr>
+            <tr>
+              <td class="req">Language Arts 12（LA 12 / English 12）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅ 必须</span></td>
+              <td><span class="badge b-ok">✅ 必须</span></td>
+              <td><span class="badge b-ok">✅ 必须</span></td>
+            </tr>
+
+            <!-- Math -->
+            <tr>
+              <td class="req">Mathematics 10（Math 10）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+            </tr>
+            <tr>
+              <td class="req">Mathematics 11 或 12（Math 11/12 任一）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-maybe">⭕ 建议走 Pre-Calc 11</span></td>
+              <td><span class="badge b-ok">✅ 通常要 Pre-Calc 11→12</span></td>
+              <td><span class="badge b-maybe">⭕ 建议走 Pre-Calc 11</span></td>
+            </tr>
+            <tr>
+              <td class="req">Pre-Calculus 12（常用于理工/医护）</td>
+              <td><span class="badge b-maybe">⭕ 可作为 Math 12（满足毕业/加分）</span></td>
+              <td><span class="badge b-no">❌ 一般不需要</span></td>
+              <td><span class="badge b-ok">✅ 常见必须</span></td>
+              <td><span class="badge b-no">❌ 一般不需要</span></td>
+            </tr>
+
+            <!-- Science -->
+            <tr>
+              <td class="req">Science 10</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+            </tr>
+            <tr>
+              <td class="req">Science 11 或 12（任一门）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-maybe">⭕ 视专业（常见 Chem/Bio/Phys）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+            </tr>
+            <tr>
+              <td class="req">Chemistry 11 / Biology 11 / Physics 11（示例）</td>
+              <td><span class="badge b-maybe">⭕ 其中一门可满足 Science 11/12</span></td>
+              <td><span class="badge b-maybe">⭕ 建议（拓宽选择）</span></td>
+              <td><span class="badge b-ok">✅ 常见：Chem 11（医护/理工更稳）</span></td>
+              <td><span class="badge b-maybe">⭕ 建议（视未来方向）</span></td>
+            </tr>
+
+            <!-- Social Studies -->
+            <tr>
+              <td class="req">Social Studies 10</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+            </tr>
+            <tr>
+              <td class="req">Social Studies 11 或 12（任一门）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-ok">✅ 多数社科/教育更看重</span></td>
+            </tr>
+
+            <!-- PHE -->
+            <tr>
+              <td class="req">Physical &amp; Health Education 10（PHE 10）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+            </tr>
+
+            <!-- Career Education -->
+            <tr>
+              <td class="req">Career-Life Education（CLE）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+            </tr>
+            <tr>
+              <td class="req">Career-Life Connections（CLC）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业已要求）</span></td>
+            </tr>
+
+            <!-- Arts/ADST -->
+            <tr>
+              <td class="req">Arts Education 或 ADST（10/11/12 任一，共 4 学分）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+            </tr>
+
+            <!-- Indigenous-focused -->
+            <tr>
+              <td class="req">Indigenous-focused 课程（至少 4 学分）</td>
+              <td><span class="badge b-ok">✅ 必须（4）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+              <td><span class="badge b-no">❌ 额外不要求（但毕业要有）</span></td>
+            </tr>
+
+            <!-- Credits structure -->
+            <tr>
+              <td class="req">总学分</td>
+              <td><span class="badge b-ok">✅ 80 学分</span></td>
+              <td><span class="badge b-ok">✅ 先满足毕业，再看院校门槛</span></td>
+              <td><span class="badge b-ok">✅ 先满足毕业，再看院校门槛</span></td>
+              <td><span class="badge b-ok">✅ 先满足毕业，再看院校门槛</span></td>
+            </tr>
+            <tr>
+              <td class="req">选修学分（Electives）</td>
+              <td><span class="badge b-ok">✅ 至少 28 学分</span></td>
+              <td><span class="badge b-maybe">⭕ 可用选修补强：商科/写作/统计</span></td>
+              <td><span class="badge b-maybe">⭕ 可用选修补强：Chem/Phys/CS</span></td>
+              <td><span class="badge b-maybe">⭕ 可用选修补强：社科/写作/心理</span></td>
+            </tr>
+            <tr>
+              <td class="req">Grade 12 学分要求</td>
+              <td><span class="badge b-ok">✅ 至少 16 学分在 12 年级<br/>（含 LA 12 + CLC）</span></td>
+              <td><span class="badge b-ok">✅</span></td>
+              <td><span class="badge b-ok">✅</span></td>
+              <td><span class="badge b-ok">✅</span></td>
+            </tr>
+
+            <!-- Graduation assessments -->
+            <tr>
+              <td class="req">省级毕业评估（Graduation Assessments）</td>
+              <td><span class="badge b-ok">✅ 3 项：Numeracy 10 + Literacy 10 + Literacy 12</span></td>
+              <td><span class="badge b-ok">✅（毕业要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业要求）</span></td>
+              <td><span class="badge b-ok">✅（毕业要求）</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">
+        <strong>Regular Dogwood（普通毕业证）底线一句话：</strong>
+        80 学分（含 52 必修 + ≥28 选修）+ ≥16 个 Grade 12 学分（含 LA12 与 CLC）+ 完成 3 项毕业评估（Numeracy 10、Literacy 10、Literacy 12）+ Indigenous-focused ≥4 学分。
+      </div>
+    </section>
+
+    <section class="tips" aria-label="tips">
+      <div class="tip">
+        <h3>先“毕业底线”再“升学门槛”</h3>
+        <p>Regular Dogwood 必修多，先把必修模块补齐，再按目标专业加修（如 Pre-Calc 12 / Chem 11）。</p>
+      </div>
+      <div class="tip">
+        <h3>理工/医护要提前卡住两门</h3>
+        <p>很多项目会看 <strong>Pre-Calc 12</strong> 和对应理科（常见 <strong>Chem 11</strong> 或 Bio/Phys）。</p>
+      </div>
+      <div class="tip">
+        <h3>选修不要随便选</h3>
+        <p>选修可用来“顺手满足”Indigenous-focused、提升英语写作、或补强 STEM/社科背景。</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 可自由复制使用。本表用于规划对照；最终以 BC 省政府与目标院校/学区最新要求为准。</div>
+  </footer>
+</body>
+</html>
+
