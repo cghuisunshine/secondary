@@ -171,28 +171,28 @@
       overflow:auto;
       -webkit-overflow-scrolling:touch;
     }
-    table{
+    table.compare{
       width:100%;
       border-collapse:separate;
       border-spacing:0;
       min-width:820px;
     }
-    thead th:first-child{
+    table.compare thead th:first-child{
       position:sticky;
       left:0;
       z-index:3;
     }
-    tbody td:first-child{
+    table.compare tbody td:first-child{
       position:sticky;
       left:0;
       z-index:2;
       background:var(--stickyCell);
       box-shadow: 1px 0 0 var(--line);
     }
-    tbody tr:nth-child(2n) td:first-child{
+    table.compare tbody tr:nth-child(2n) td:first-child{
       background:var(--stickyCellAlt);
     }
-    thead th{
+    table.compare thead th{
       position:sticky;
       top:0;
       z-index:1;
@@ -206,16 +206,16 @@
       text-align:left;
       white-space:nowrap;
     }
-    html[data-theme="light"] thead th{
+    html[data-theme="light"] table.compare thead th{
       background:rgba(255,255,255,.92);
     }
-    tbody td{
+    table.compare tbody td{
       padding:12px 12px;
       border-bottom:1px solid var(--line);
       vertical-align:top;
       font-size:14px;
     }
-    tbody tr:nth-child(2n) td{
+    table.compare tbody tr:nth-child(2n) td{
       background:rgba(255,255,255,.02);
     }
     .req{
@@ -391,30 +391,58 @@
     }
 
     /* Column focus (mobile-friendly) */
-    html[data-view="arts"] table th:nth-child(4),
-    html[data-view="arts"] table td:nth-child(4),
-    html[data-view="arts"] table th:nth-child(5),
-    html[data-view="arts"] table td:nth-child(5){display:none}
+    html[data-view="arts"] table.compare th:nth-child(4),
+    html[data-view="arts"] table.compare td:nth-child(4),
+    html[data-view="arts"] table.compare th:nth-child(5),
+    html[data-view="arts"] table.compare td:nth-child(5){display:none}
 
-    html[data-view="stem"] table th:nth-child(3),
-    html[data-view="stem"] table td:nth-child(3),
-    html[data-view="stem"] table th:nth-child(5),
-    html[data-view="stem"] table td:nth-child(5){display:none}
+    html[data-view="stem"] table.compare th:nth-child(3),
+    html[data-view="stem"] table.compare td:nth-child(3),
+    html[data-view="stem"] table.compare th:nth-child(5),
+    html[data-view="stem"] table.compare td:nth-child(5){display:none}
 
-    html[data-view="edu"] table th:nth-child(3),
-    html[data-view="edu"] table td:nth-child(3),
-    html[data-view="edu"] table th:nth-child(4),
-    html[data-view="edu"] table td:nth-child(4){display:none}
+    html[data-view="edu"] table.compare th:nth-child(3),
+    html[data-view="edu"] table.compare td:nth-child(3),
+    html[data-view="edu"] table.compare th:nth-child(4),
+    html[data-view="edu"] table.compare td:nth-child(4){display:none}
 
-    html[data-view="arts"] tbody td:nth-child(3),
-    html[data-view="stem"] tbody td:nth-child(4),
-    html[data-view="edu"] tbody td:nth-child(5){
+    html[data-view="arts"] table.compare tbody td:nth-child(3),
+    html[data-view="stem"] table.compare tbody td:nth-child(4),
+    html[data-view="edu"] table.compare tbody td:nth-child(5){
       background:rgba(122,162,255,.12);
     }
-    html[data-theme="light"][data-view="arts"] tbody td:nth-child(3),
-    html[data-theme="light"][data-view="stem"] tbody td:nth-child(4),
-    html[data-theme="light"][data-view="edu"] tbody td:nth-child(5){
+    html[data-theme="light"][data-view="arts"] table.compare tbody td:nth-child(3),
+    html[data-theme="light"][data-view="stem"] table.compare tbody td:nth-child(4),
+    html[data-theme="light"][data-view="edu"] table.compare tbody td:nth-child(5){
       background:rgba(37,99,235,.08);
+    }
+
+    .combo-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+    }
+    .combo-table th,
+    .combo-table td{
+      padding:10px 12px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      font-size:14px;
+    }
+    .combo-table th{
+      font-size:13px;
+      color:var(--muted);
+      background:rgba(0,0,0,.08);
+      white-space:nowrap;
+      text-align:left;
+    }
+    html[data-theme="light"] .combo-table th{
+      background:rgba(15,23,42,.04);
+    }
+    .combo-type{
+      white-space:nowrap;
+      font-weight:600;
+      color:var(--text);
     }
 
     @media print{
@@ -496,7 +524,7 @@
       </div>
 
       <div class="table-wrap">
-        <table id="table">
+        <table id="table" class="compare">
           <caption class="sr-only">Adult Dogwood 毕业底线与三条升学路径课程对照表</caption>
           <thead>
             <tr>
@@ -608,6 +636,52 @@
         English 12 + 一门 Math 11/12 + CLC（或成人等效）+ 选修学分（可由已修课程/在线课程转入）。
         <br/>
         <span class="small">* “文/商、理工/医护、教育/社科”列的是常见大学/College 入学门槛课程，并非毕业证必需。</span>
+      </div>
+    </section>
+
+    <section class="card" aria-label="新移民数学强大学准备黄金组合">
+      <div class="card-head">
+        <div>
+          <strong>新移民 · 数学强 · 大学准备（黄金组合）</strong>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="combo-table">
+          <thead>
+            <tr>
+              <th style="min-width:100px;">类型</th>
+              <th style="min-width:220px;">课程</th>
+              <th style="min-width:320px;">为什么这样配</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="combo-type">必修</td>
+              <td>English Studies 12</td>
+              <td>无法回避，但只承受一次</td>
+            </tr>
+            <tr>
+              <td class="combo-type">数学</td>
+              <td>Pre-Calculus 12</td>
+              <td>数学强 → 直接拉满</td>
+            </tr>
+            <tr>
+              <td class="combo-type">毕业结构</td>
+              <td>Career Life Connections</td>
+              <td>成人毕业必修</td>
+            </tr>
+            <tr>
+              <td class="combo-type">选修 ①</td>
+              <td>Computer Programming 11</td>
+              <td>逻辑/数学强，英语负担低</td>
+            </tr>
+            <tr>
+              <td class="combo-type">选修 ②</td>
+              <td>Physics 11 或 Chemistry 11</td>
+              <td>为 STEM / 医护 / 理工留门</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
